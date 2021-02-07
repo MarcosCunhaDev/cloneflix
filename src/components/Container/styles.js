@@ -7,7 +7,7 @@ export const Container = styled.SafeAreaView`
   justify-content: flex-start;
   align-items: center;
   padding-top: 40px;
-  padding-horizontal: 16px;
+  padding-left: 16px;
 `;
 export const Label = styled.Text`
   color: ${colors.secondaryColor};

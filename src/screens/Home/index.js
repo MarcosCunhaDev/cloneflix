@@ -4,6 +4,7 @@ import { Container, Label } from "./styles";
 import ContainerDefault from "../../components/Container";
 import Card from "../../components/Card";
 import Section from "../../components/Sections";
+import InputText from "../../components/inputText";
 
 const data = [
   { id: 1, name: "teste" },
@@ -25,6 +26,7 @@ function HomeScreen() {
   return (
     <ContainerDefault>
       <ScrollView style={{ flex: 1 }}>
+        <InputText />
         <Section data={data} sectionName={"Lançamentos"} />
         <Section data={data} sectionName={"Populares"} />
         <Section data={data} sectionName={"Teste "} />

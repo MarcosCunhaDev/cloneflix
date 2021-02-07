@@ -8,11 +8,15 @@ const Section = ({ data, sectionName = "Nome" }) => {
     return <Card title={item.name} uri={item.uri} />;
   };
   return (
-    <View style={{ width: "100%", minHeight: 200 }}>
+    <View
+      style={{
+        width: "100%",
+        minHeight: 200,
+      }}
+    >
       <Text
         style={{
           marginTop: 10,
-          marginLeft: 10,
           fontWeight: "bold",
           fontSize: 16,
           color: "white",
