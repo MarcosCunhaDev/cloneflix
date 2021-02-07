@@ -4,8 +4,13 @@ import { AntDesign } from "@expo/vector-icons";
 import { BoxIcon, ContainerInput } from "./styles";
 import { set } from "react-native-reanimated";
 
-const InputText = ({ placeHolder = "Pesquisar" }) => {
-  const [value, onChangeText] = useState("");
+const InputText = ({
+  placeHolder = "Pesquisar",
+  value,
+  setValue,
+  handleClick,
+}) => {
+  //   const [value, onChangeText] = useState("");
 
   return (
     <ContainerInput>
@@ -19,17 +24,12 @@ const InputText = ({ placeHolder = "Pesquisar" }) => {
         placeholderTextColor={"lightgrey"}
         placeholder={placeHolder}
         numberOfLines={1}
-        onChangeText={(text) => onChangeText(text)}
+        onChangeText={(text) => setValue(text)}
         value={value}
         editable
         maxLength={100}
       />
-      <TouchableOpacity
-        onPress={() => {
-          console.log(value);
-          onChangeText("");
-        }}
-      >
+      <TouchableOpacity onPress={handleClick}>
         <BoxIcon>
           <AntDesign name="search1" size={20} color={"white"} />
         </BoxIcon>

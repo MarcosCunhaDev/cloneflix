@@ -1,0 +1,31 @@
+// THE BASE API URL
+const API_URL = "https://api.themoviedb.org/3/";
+
+//KEY FROM TMDB DEVELOPER API
+const API_KEY = "66a66d6e649ca1e4a60f2227da49911e";
+
+// THE URL WHICH TRIGGERS SEARCH
+const SEARCH_BASE_URL = `${API_URL}search/movie?api_key=${API_KEY}&query=`;
+
+// THE URL WHICH TRIGGERS POPULAR MOVIES
+const POPULAR_BASE_URL = `${API_URL}movie/popular?api_key=${API_KEY}`;
+
+// UNFORTUNATELY TMDB LIMITS 20 RESULTS PER PAGE, SO RATINGS FILTER WILL BE
+// LIMITED TO THAT JUST FOR DEMO.
+const FILTER_BASE_URL = `${API_URL}movie/popular?api_key=${API_KEY}&page=2`;
+
+// THE BASE URL WHICH TRIGGERS IMAGES
+const IMAGE_BASE_URL = "http://image.tmdb.org/t/p/";
+
+// THE SIZE OF MOVIES POSTER IMAGES
+const IMAGE_SIZE = "w185";
+
+export {
+  SEARCH_BASE_URL,
+  POPULAR_BASE_URL,
+  FILTER_BASE_URL,
+  API_URL,
+  API_KEY,
+  IMAGE_BASE_URL,
+  IMAGE_SIZE,
+};

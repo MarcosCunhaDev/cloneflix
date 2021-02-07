@@ -5,7 +5,7 @@ import Card from "../Card";
 
 const Section = ({ data, sectionName = "Nome" }) => {
   const renderItem = ({ item }) => {
-    return <Card title={item.name} uri={item.uri} />;
+    return <Card title={item.title} backPath={item.poster} />;
   };
   return (
     <View
