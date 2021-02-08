@@ -26,13 +26,13 @@ const TabStack = () => {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          if (route.name === "Home") {
+          if (route.name === "Início") {
             return <AntDesign name="home" size={24} color={color} />;
           }
-          if (route.name === "Search") {
+          if (route.name === "Busca") {
             return <AntDesign name="search1" size={24} color={color} />;
           }
-          if (route.name === "Options") {
+          if (route.name === "Opções") {
             return <Ionicons name="options" size={24} color={color} />;
           }
         },
@@ -45,9 +45,9 @@ const TabStack = () => {
         labelPosition: "beside-icon",
       }}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Search" component={SearchScreen} />
-      <Tab.Screen name="Options" component={OptionsScreen} />
+      <Tab.Screen name="Início" component={HomeScreen} />
+      <Tab.Screen name="Busca" component={SearchScreen} />
+      <Tab.Screen name="Opções" component={OptionsScreen} />
     </Tab.Navigator>
   );
 };

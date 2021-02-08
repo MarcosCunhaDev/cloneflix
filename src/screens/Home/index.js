@@ -63,19 +63,19 @@ function HomeScreen() {
   }, []);
 
   const handleClickSearch = () => {
-    navigation.navigate("Search");
+    navigation.navigate("Busca");
   };
 
   return (
     <ContainerDefault>
       <ScrollView style={{ flex: 1, width: "100%" }}>
-        <TouchableOpacity handleClick={handleClickSearch}>
-          <InputText
-            placeHolder={"Pesquisar Filme"}
-            value={searchValue}
-            setValue={setSearchValue}
-          />
-        </TouchableOpacity>
+        <InputText
+          placeHolder={"Pesquisar Filme"}
+          value={searchValue}
+          setValue={setSearchValue}
+          handleClick={handleClickSearch}
+          fakeInput
+        />
         <Banner data={parsedTrending} sectionName={"Lançamentos"} />
         {arrayGenres.length > 0
           ? arrayGenres.map((item) => (
