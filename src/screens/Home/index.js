@@ -1,66 +1,52 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import { Container, Label } from "./styles";
 import ContainerDefault from "../../components/Container";
 import Card from "../../components/Card";
 import Section from "../../components/Sections";
 import InputText from "../../components/inputText";
-import { getSearchedMovies } from "./homeActions";
-import {
-  SEARCH_BASE_URL,
-  POPULAR_BASE_URL,
-  FILTER_BASE_URL,
-  API_URL,
-  API_KEY,
-  IMAGE_BASE_URL,
-  IMAGE_SIZE,
-} from "../../services/api";
-
-const data = [
-  { id: 1, name: "teste" },
-  { id: 2, name: "testeasdasdasdadadsaasd" },
-  { id: 3, name: "teste" },
-  { id: 4, name: "teste" },
-  { id: 5, name: "teste" },
-];
+import { getTrendingMovies } from "../../services/moviesActions";
+import { useNavigation } from "@react-navigation/native";
+import { parseDataMovies } from "../../helpers/utils";
 
 function HomeScreen() {
   const [data, setData] = useState([]);
   const [parsedData, setParsedData] = useState([]);
-  const [searchValue, setSearchValue] = useState("jurassic");
+  const [searchValue, setSearchValue] = useState("");
   const [failed, setFailed] = useState(false);
   const [loading, setLoading] = useState(false);
+  const navigation = useNavigation();
 
   useEffect(() => {
-    getSearchedMovies(searchValue, setData);
+    getTrendingMovies(setData);
   }, []);
-
-  const parseDataMovies = (resultArray) => {
-    const array = [...resultArray];
-    const parsedArray = array.map((item) => {
-      return {
-        title: item.title,
-        poster: item.poster_path,
-      };
-    });
-    return parsedArray;
-  };
 
   useEffect(() => {
     setParsedData(parseDataMovies(data));
   }, [data]);
 
+  const handleClickSearch = () => {
+    navigation.navigate("Search");
+  };
+
   return (
     <ContainerDefault>
-      <ScrollView style={{ flex: 1 }}>
-        <InputText
-          placeHolder={"Pesquisar Filme"}
-          value={searchValue}
-          setValue={setSearchValue}
-        />
+      <ScrollView style={{ flex: 1, width: "100%" }}>
+        <TouchableOpacity handleClick={handleClickSearch}>
+          <InputText
+            placeHolder={"Pesquisar Filme"}
+            value={searchValue}
+            setValue={setSearchValue}
+          />
+        </TouchableOpacity>
         <Section data={parsedData} sectionName={"Lançamentos"} />
         <Section data={parsedData} sectionName={"Populares"} />
-        {/* <Section data={parsedData} sectionName={"Teste "} /> */}
       </ScrollView>
     </ContainerDefault>
   );

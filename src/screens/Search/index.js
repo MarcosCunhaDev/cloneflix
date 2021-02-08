@@ -1,26 +1,32 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, FlatList, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  ScrollView,
+  ActivityIndicator,
+} from "react-native";
 import { BoxResults } from "./styles";
 import ContainerDefault from "../../components/Container";
 import Card from "../../components/Card";
 import Section from "../../components/Sections";
 import InputText from "../../components/inputText";
-import { getSearchedMovies } from "../Home/homeActions";
-
-const RenderResults = (parsedData) => {
-  if (parsedData.length > 0) {
-    array.map((item) => {
-      return <Text>{item.title}</Text>;
-    });
-  }
-  return null;
-};
+import { getSearchedMovies } from "../../services/moviesActions";
+import { useNavigation } from "@react-navigation/native";
 
 function SearchScreen() {
+  const navigation = useNavigation();
   const [data, setData] = useState([]);
+  const [loadingData, setLoadingData] = useState(false);
   const [parsedData, setParsedData] = useState([]);
-  const [dataFiltered, setDataFiltered] = useState([]);
   const [searchValue, setSearchValue] = useState("");
+
+  useEffect(() => {
+    navigation.addListener("focus", () => {
+      setSearchValue("");
+      setData([]);
+    });
+  }, [navigation]);
 
   const parseDataMovies = (resultArray) => {
     const array = [...resultArray];
@@ -32,11 +38,13 @@ function SearchScreen() {
     });
     return parsedArray;
   };
+
   const handleSearch = () => {
     if (searchValue) {
-      getSearchedMovies(searchValue, setData);
+      getSearchedMovies(searchValue, setData, setLoadingData);
     }
   };
+
   useEffect(() => {
     setParsedData(parseDataMovies(data));
   }, [data]);
@@ -56,7 +64,9 @@ function SearchScreen() {
         />
         <BoxResults>
           {searchValue ? (
-            parsedData.length > 0 ? (
+            loadingData ? (
+              <ActivityIndicator size={"small"} />
+            ) : parsedData.length > 0 ? (
               <>
                 {parsedData.map((item) => (
                   <Card title={item.title} backPath={item.poster} />

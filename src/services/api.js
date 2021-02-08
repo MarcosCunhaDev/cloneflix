@@ -4,6 +4,9 @@ const API_URL = "https://api.themoviedb.org/3/";
 //KEY FROM TMDB DEVELOPER API
 const API_KEY = "66a66d6e649ca1e4a60f2227da49911e";
 
+//TRENDING MOVIES
+const TRENDING_URL = `${API_URL}trending/movies/week?api_key=${API_KEY}`;
+
 // THE URL WHICH TRIGGERS SEARCH
 const SEARCH_BASE_URL = `${API_URL}search/movie?api_key=${API_KEY}&query=`;
 
@@ -28,4 +31,5 @@ export {
   API_KEY,
   IMAGE_BASE_URL,
   IMAGE_SIZE,
+  TRENDING_URL,
 };

@@ -11,6 +11,8 @@ export const BoxResults = styled.View`
   padding-horizontal: 20px;
   margin-right: 16px;
   border-radius: 5px;
+  width: 100%;
+  height: 100%;
 `;
 export const Label = styled.Text`
   color: ${colors.secondaryColor};
