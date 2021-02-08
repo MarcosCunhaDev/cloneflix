@@ -18,7 +18,7 @@ import {
   getMoviesByGenre,
 } from "../../services/moviesActions";
 import { useNavigation } from "@react-navigation/native";
-import { parseDataMovies } from "../../helpers/utils";
+import { parseDataMovies, parseDataMoviesSec } from "../../helpers/utils";
 
 function HomeScreen() {
   const [data, setData] = useState([]);
@@ -31,6 +31,7 @@ function HomeScreen() {
   const navigation = useNavigation();
   const [arrayGenres, setArrayGenres] = useState([]);
   const [dataByGenres, setDataByGenres] = useState([]);
+  const [parsedDataByGenres, setParsedDataByGenres] = useState([]);
 
   useEffect(() => {
     navigation.addListener("focus", () => {
@@ -44,19 +45,14 @@ function HomeScreen() {
   }, [dataTrending]);
 
   useEffect(() => {
-    let dataTotal = [];
     if (arrayGenres.length > 0) {
-      arrayGenres.map((item) => {
-        let movies = getMoviesByGenre(item.id);
-
-        if (movies.length > 0) {
-          console.log(movies);
-          // dataTotal.push(parseDataMovies(movies));
-        }
-      });
+      getMoviesByGenre(arrayGenres, setDataByGenres);
     }
-    // setDataByGenres(dataTotal);
   }, [arrayGenres]);
+
+  useEffect(() => {
+    setParsedDataByGenres(dataByGenres);
+  }, [dataByGenres]);
 
   useEffect(() => {
     getTrendingMovies(setData);
@@ -78,8 +74,13 @@ function HomeScreen() {
         />
         <Banner data={parsedTrending} sectionName={"Lançamentos"} />
         {arrayGenres.length > 0
-          ? arrayGenres.map((item) => (
-              <Section key={item.id} data={item} sectionName={item.name} />
+          ? arrayGenres.map((item, index) => (
+              <Section
+                dif
+                key={item.id}
+                data={parsedDataByGenres[index]}
+                sectionName={item.name}
+              />
             ))
           : null}
       </ScrollView>
