@@ -68,9 +68,11 @@ function SearchScreen() {
               <ActivityIndicator size={"small"} />
             ) : parsedData.length > 0 ? (
               <>
-                {parsedData.map((item) => (
-                  <Card title={item.title} backPath={item.poster} />
-                ))}
+                {parsedData.map((item) => {
+                  if (item.poster) {
+                    return <Card title={item.title} backPath={item.poster} />;
+                  }
+                })}
               </>
             ) : (
               <Text
