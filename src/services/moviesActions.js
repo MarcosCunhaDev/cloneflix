@@ -51,13 +51,16 @@ export async function getMoviesGenres(setData) {
   }
 }
 
-export async function getMoviesByGenre(genreId) {
-  const url = `${POPULAR_BASE_URL}`;
-  try {
-    const response = await axios.get(url);
-    const data = await response.data.results;
-    return data;
-  } catch (err) {
-    console.error(err);
-  }
+export async function getMoviesByGenre(allGenres, setData) {
+  const allUrls = allGenres.map((item) => `${POPULAR_BASE_URL}${item.id}`);
+
+  Promise.all(
+    allUrls.map(async (url) => {
+      const response = await axios.get(url);
+      const data = await response.data.results;
+      return data;
+    })
+  )
+    .then((data) => setData(data))
+    .catch((err) => console.log(err));
 }

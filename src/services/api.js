@@ -14,7 +14,7 @@ const GENRES_URL = `${API_URL}genre/movie/list?api_key=${API_KEY}&language=pt-BR
 const SEARCH_BASE_URL = `${API_URL}search/movie?api_key=${API_KEY}&language=pt-BR&query=`;
 
 // THE URL WHICH TRIGGERS POPULAR MOVIES
-const POPULAR_BASE_URL = `${API_URL}discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=16`;
+const POPULAR_BASE_URL = `${API_URL}discover/movie?api_key=${API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_genres=`;
 
 // UNFORTUNATELY TMDB LIMITS 20 RESULTS PER PAGE, SO RATINGS FILTER WILL BE
 // LIMITED TO THAT JUST FOR DEMO.

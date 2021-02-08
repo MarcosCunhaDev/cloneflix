@@ -3,9 +3,14 @@ import { BoxCard, Title, ContentImage } from "./styles";
 import { View, Text, FlatList } from "react-native";
 import Card from "../Card";
 
-const Section = ({ data, sectionName = "Nome" }) => {
+const Section = ({ data, sectionName = "Nome", dif }) => {
   const renderItem = ({ item }) => {
-    return <Card title={item.title} backPath={item.poster} />;
+    return (
+      <Card
+        title={item.title}
+        backPath={dif ? item.poster_path : item.poster}
+      />
+    );
   };
   return (
     <View

@@ -9,4 +9,17 @@ const parseDataMovies = (resultArray) => {
   return parsedArray;
 };
 
-export { parseDataMovies };
+const parseDataMoviesSec = (resultArray) => {
+  const array = [...resultArray];
+  const parsedArray = array.map((item) => {
+    item.map((secItem) => {
+      return {
+        title: secItem.title,
+        poster: secItem.poster_path,
+      };
+    });
+  });
+  return parsedArray;
+};
+
+export { parseDataMovies, parseDataMoviesSec };
