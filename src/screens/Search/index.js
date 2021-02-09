@@ -14,19 +14,21 @@ import InputText from "../../components/inputText";
 import { getSearchedMovies } from "../../services/moviesActions";
 import { useNavigation } from "@react-navigation/native";
 
-function SearchScreen() {
-  const navigation = useNavigation();
+function SearchScreen(props) {
+  // const navigation = useNavigation();
   const [data, setData] = useState([]);
   const [loadingData, setLoadingData] = useState(false);
   const [parsedData, setParsedData] = useState([]);
   const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    navigation.addListener("focus", () => {
-      setSearchValue("");
-      setData([]);
-    });
-  }, [navigation]);
+    if (props.navigation) {
+      props.navigation.addListener("focus", () => {
+        setSearchValue("");
+        setData([]);
+      });
+    }
+  }, [props.navigation]);
 
   const parseDataMovies = (resultArray) => {
     const array = [...resultArray];

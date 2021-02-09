@@ -20,7 +20,7 @@ import {
 import { useNavigation } from "@react-navigation/native";
 import { parseDataMovies, parseDataMoviesSec } from "../../helpers/utils";
 
-function HomeScreen() {
+function HomeScreen(props) {
   const [data, setData] = useState([]);
   const [dataTrending, setDataTrending] = useState([]);
   const [parsedData, setParsedData] = useState([]);
@@ -28,17 +28,19 @@ function HomeScreen() {
   const [searchValue, setSearchValue] = useState("");
   const [failed, setFailed] = useState(false);
   const [loading, setLoading] = useState(false);
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const [arrayGenres, setArrayGenres] = useState([]);
   const [dataByGenres, setDataByGenres] = useState([]);
   const [parsedDataByGenres, setParsedDataByGenres] = useState([]);
 
   useEffect(() => {
-    navigation.addListener("focus", () => {
-      getTrendingMovies(setDataTrending);
-      getMoviesGenres(setArrayGenres);
-    });
-  }, [navigation]);
+    if (props.navigation) {
+      props.navigation.addListener("focus", () => {
+        getTrendingMovies(setDataTrending);
+        getMoviesGenres(setArrayGenres);
+      });
+    }
+  }, [props.navigation]);
 
   useEffect(() => {
     setParsedTrending(parseDataMovies(dataTrending));
@@ -59,7 +61,7 @@ function HomeScreen() {
   }, []);
 
   const handleClickSearch = () => {
-    navigation.navigate("Busca");
+    props.navigation.navigate("Busca");
   };
 
   return (
@@ -70,7 +72,7 @@ function HomeScreen() {
           value={searchValue}
           setValue={setSearchValue}
           handleClick={handleClickSearch}
-          fakeInput
+          fakeInput={true}
         />
         <Banner data={parsedTrending} sectionName={"Lançamentos"} />
         {arrayGenres.length > 0

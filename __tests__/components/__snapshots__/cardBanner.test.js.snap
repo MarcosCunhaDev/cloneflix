@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<RCTSafeAreaView
+  emulateUnlessSupported={true}
+  style={
+    Array [
+      Object {
+        "alignItems": "center",
+        "borderRadius": 5,
+        "height": 250,
+        "justifyContent": "flex-start",
+        "marginBottom": 10,
+        "marginLeft": 0,
+        "marginRight": 10,
+        "marginTop": 10,
+        "overflow": "hidden",
+        "width": 200,
+      },
+    ]
+  }
+>
+  <View
+    style={
+      Array [
+        Object {
+          "borderRadius": 5,
+          "height": 250,
+          "overflow": "hidden",
+          "width": 200,
+        },
+      ]
+    }
+  >
+    <Image
+      source={
+        Object {
+          "uri": "http://image.tmdb.org/t/p/originalundefined",
+        }
+      }
+      style={
+        Object {
+          "flex": 1,
+          "resizeMode": "stretch",
+        }
+      }
+    />
+  </View>
+</RCTSafeAreaView>
+`;

@@ -9,7 +9,7 @@ const InputText = ({
   value,
   setValue,
   handleClick,
-  fakeInput,
+  fakeInput = false,
 }) => {
   //   const [value, onChangeText] = useState("");
 
